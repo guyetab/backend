@@ -44,7 +44,7 @@ jobs:
       - persist_to_workspace:
           root: backend
           paths:
-            - 3w5-h25-L01-backend/public
+            - 3w5-h25-L01-backend
 
   deploiement:
     docker:
@@ -54,7 +54,7 @@ jobs:
           at: .
       - run:
           name: Vérification des fichiers backend/public
-          command: ls -Rl backend/3w5-h25-L01-backend/public
+          command: ls -Rl /3w5-h25-L01-backend/public
 
 workflows:
   version: 2
