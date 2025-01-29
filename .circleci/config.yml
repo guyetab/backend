@@ -15,12 +15,18 @@ jobs:
       - run:
           name: Exécuter les tests
           command: cd 3w5-h25-L01-backend && npm test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - 3w5-h25-L01-backend
 
   integrationFrontend:
     docker:
       - image: circleci/node:16
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Cloner le backend et le frontend
           command: |
@@ -55,3 +61,15 @@ jobs:
       - run:
           name: Vérification des fichiers backend/public
           command: ls -Rl backend/3w5-h25-L01-backend/public
+
+workflows:
+  version: 2
+  deploy_pipeline:
+    jobs:
+      - checkoutEtTests
+      - integrationFrontend:
+          requires:
+            - checkoutEtTests
+      - deploiement:
+          requires:
+            - integrationFrontend
