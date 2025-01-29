@@ -17,7 +17,7 @@ jobs:
           command: cd 3w5-h25-L01-backend && npm test
 
 
-    integrationFrontend:
+  integrationFrontend:
     docker:
       - image: circleci/node:16
     steps:
