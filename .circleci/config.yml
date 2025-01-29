@@ -42,28 +42,16 @@ jobs:
           name: Vérifier la présence des fichiers
           command: ls -Rl backend/3w5-h25-L01-backend/public
       - persist_to_workspace:
-          root: backend
+          root: backend/3w5-h25-L01-backend
           paths:
-            - 3w5-h25-L01-backend
+            - public
 
   deploiement:
     docker:
       - image: circleci/node:16
     steps:
       - attach_workspace:
-          at: .
+          at: backend/3w5-h25-L01-backend
       - run:
           name: Vérification des fichiers backend/public
-          command: ls -Rl /3w5-h25-L01-backend/public
-
-workflows:
-  version: 2
-  deploy_pipeline:
-    jobs:
-      - checkoutEtTests
-      - integrationFrontend:
-          requires:
-            - checkoutEtTests
-      - deploiement:
-          requires:
-            - integrationFrontend
+          command: ls -Rl backend/3w5-h25-L01-backend/public
