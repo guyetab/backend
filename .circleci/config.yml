@@ -16,7 +16,6 @@ jobs:
           name: Exécuter les tests
           command: cd 3w5-h25-L01-backend && npm test
 
-
   integrationFrontend:
     docker:
       - image: circleci/node:16
@@ -42,31 +41,6 @@ jobs:
       - run:
           name: Vérifier la présence des fichiers
           command: ls -Rl backend/3w5-h25-L01-backend/public
-      - persist_to_workspace:
-          root: backend
-          paths:
-            - 3w5-h25-L01-backend/public
-
-    docker:
-      - image: circleci/node:16
-    steps:
-      - checkout
-      - run:
-          name: Cloner le backend et le frontend
-          command: |
-            git clone https://github.com/guyetab/backend.git backend
-            git clone https://github.com/guyetab/frontend.git frontend
-      - run:
-          name: Installer les dépendances du frontend
-          command: cd frontend/3w5-h25-L01-frontend && npm install
-      - run:
-          name: Compiler le frontend
-          command: cd frontend/3w5-h25-L01-frontend && npm run build
-      - run:
-          name: Copier le build dans le backend
-          command: |
-            mkdir -p backend/3w5-h25-L01-backend/public
-            cp -r frontend/3w5-h25-L01-frontend/build/* backend/3w5-h25-L01-backend/public/
       - persist_to_workspace:
           root: backend
           paths:
