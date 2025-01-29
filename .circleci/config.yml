@@ -45,7 +45,7 @@ jobs:
           name: Copier le build du frontend dans le backend
           command: cp -r frontend/3w5-h25-L01-frontend/build/* backend/3w5-h25-L01-backend/public/
       - run:
-          name: Vérifier la présence des fichiers
+          name: Vérifier la présence des fichiers et test
           command: ls -Rl backend/3w5-h25-L01-backend/public
       - persist_to_workspace:
           root: backend/3w5-h25-L01-backend
