@@ -59,7 +59,7 @@ jobs:
       - attach_workspace:
           at: backend/3w5-h25-L01-backend
       - run:
-          name: Vérification des fichiers backend/public et test 
+          name: Vérification des fichiers backend/public 
           command: ls -Rl backend/3w5-h25-L01-backend/public
 
 workflows:
